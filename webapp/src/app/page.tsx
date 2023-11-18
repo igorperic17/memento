@@ -33,7 +33,9 @@ export default function Home() {
 
   const createMemento = async (memento: Memento, date: Date) => {
     setShowCreateDialog(true);
-    const cid = await uploadMemento(memento, 'pwd')
+    const pwd = (Math.random() * 1e8).toString();
+    setPwd(pwd);
+    const cid = await uploadMemento(memento, pwd)
     setCurrentStep(3)
 
     const contract = getContract()
@@ -42,9 +44,8 @@ export default function Home() {
 
     await contract.create(id, cid, date!.getTime(), { value: 100 }).then((t) => t.wait())
 
-    setPwd((Math.random() * 1e8).toString());
     setCurrentStep(4);
-  }
+  };
 
   return (
     <>

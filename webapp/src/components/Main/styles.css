@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
+
+@keyframes sway {
+    from {
+        bottom: 0px;
+    }
+
+    to {
+        bottom: 32px;
+    }
+}
+
+.logo {
+    animation-duration: 1.5s;
+    animation-name: sway;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    position: relative;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+}
+
+@keyframes flicker {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.4;
+    }
+}
+
+.logoTitle{
+    font-family: 'Montserrat';
+    font-size: 40px;
+    font-weight: 600;
+    opacity: 1;
+    animation-duration: 1.5s;
+    animation-name: flicker;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    margin-top: -4px;
+    text-align: center;
+}
