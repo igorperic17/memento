@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import './styles.css';
+import Button from '../Button/Button';
 
 export default function Main() {
     return (
@@ -15,11 +16,16 @@ export default function Main() {
                 />
                 <h1 className='logoTitle'>memento</h1>
             </div>
-            <h2 className='mt-[67px] text-2xl'>Welcome to Memento, where you can send messages in your own special way.</h2>
-            <h2 className='mt-[53px] text-2xl'>
-                <b>Choose when and how your words get to people,</b> whether it's for a future date, a certain place, or other reasons.
-                Make lasting memories, set reminders, or keep special moments safe. It's easy and flexible with Memento. Start writing to friends, family, or even yourself :)
+            <h2 className='mt-[16px] text-2xl'>Welcome to Memento, where your messages travel through time!</h2>
+            <h2 className='mt-[53px] text-2xl mb-[36px]'>
+                Here, you can write messages, attach files, and <b>choose when the notes get to loved ones.</b>&nbsp;
+                Send a birthday message for later, a reminder, or keep a memory safe. Start sending notes to friends, family, or even to yourself in a fun new way :)
             </h2>
+            <a href='#send'>
+                <Button classes='text-2xl px-[34px]'>
+                    Write A Memento
+                </Button>
+            </a>
         </div>
     )
 }

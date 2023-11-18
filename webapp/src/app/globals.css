@@ -28,3 +28,7 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
+
+b {
+  font-weight: bold;
+}
