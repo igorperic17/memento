@@ -36,13 +36,13 @@ export default function CreateMementoForm({
           <InputField
             value={memento.title}
             setValue={handleChange('title')}
-            placeholder="Enter a subject"
+            placeholder="Give this Memento a name"
           />
 
           <textarea
             value={memento.description}
             className="mt-2 outline-none pb-1 bg-bg w-full placeholder:text-watermark h-[380px] max-h-[380px] resize-none"
-            placeholder="To..."
+            placeholder="Write down anything that you want to say..."
             onChange={(e) => handleChange('description')(e.target.value)}
           />
         </div>
