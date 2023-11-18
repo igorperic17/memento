@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Button from "../Button/Button";
 import { NFTStorage, File } from 'nft.storage';
+import Image from 'next/image';
 
 
 export default function UploadFile() {
@@ -25,11 +25,16 @@ export default function UploadFile() {
     };
 
     return (
-        <div className='p-6 border border-primary w-fit rounded-[20px] flex flex-col gap-6'>
-            <label>Upload file</label>
-            <input type='file' onChange={e => e.target.files?.length && setFile(e.target.files[0])} />
-
-            <Button onClick={onUpload}>Upload</Button>
+        <div className='max-w-[572px] w-full border rounded-[20px] border-border h-[470px] flex justify-center items-center'>
+            <label htmlFor='upload'>
+                <input
+                    id='upload'
+                    className='display-none hidden'
+                    type='file'
+                    onChange={e => e.target.files?.length && setFile(e.target.files[0])}
+                />
+                <Image alt='draganddrop' src='draganddrop.svg' width={218} height={107} />
+            </label>
         </div>
     );
 }

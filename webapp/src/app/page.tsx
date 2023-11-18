@@ -26,6 +26,7 @@ const CONTACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 // cryptography
 import useModularArithmetic from './useModularArithmetic';
 import ModularArithmeticWorker from './modularArithmetic.worker';
+import CreateMementoForm from '@/components/CreateMementoForm/CreateMementoForm'
 
 export default function Home() {
     const [boxes, setBoxes] = useState<Memento.BoxStructOutput[]>([])
@@ -121,8 +122,10 @@ export default function Home() {
         <WalletProvider>
             <Header page={page} setPage={setPage} />
 
-            <main className="flex min-h-screen flex-col items-center gap-8">
+            <main className="flex min-h-screen flex-col items-center gap-8 max-w-[1400px] mx-auto">
                 <Main />
+
+                <CreateMementoForm />
 
                 <button onClick={handleComputation}>Run Computation</button>
                 <p>Progress: {progress}%</p>
