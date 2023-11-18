@@ -61,16 +61,3 @@ export const pullMemento = async (cid: string, password: string) => {
 
   return JSON.parse(json) as RawMemento
 }
-;(window as any).mem = {
-  pullMemento,
-  createMemento: () => {
-    uploadMemento(
-      {
-        title: 'Hi',
-        description: 'new title',
-        files: [new File(['asd'], 'helo.txt')],
-      },
-      'passhere'
-    )
-  },
-}

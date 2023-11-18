@@ -17,4 +17,3 @@ export const unlockSecret = async (seed: string) => {
 
   return result as string
 }
-;(window as any).seed = { getSeed, unlockSecret }
