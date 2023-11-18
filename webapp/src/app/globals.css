@@ -9,6 +9,7 @@
   --fg: #E2E2E2;
   --fg-disabled: rgba(255, 255, 255, 0.38);
   --primary: #BB86FC;
+  --primary-alt: rgba(119, 84, 162, 1);
   --secondary: #03DAC6;
   --border: rgba(226,226,226, 0.4);
   --bg-hover: rgba(226,226,226, 0.1);

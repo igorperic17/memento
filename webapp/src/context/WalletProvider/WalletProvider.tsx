@@ -1,9 +1,9 @@
 'use client'
 
-import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
+import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react';
 
-import { WagmiConfig } from 'wagmi'
-import { localhost } from 'viem/chains'
+import { WagmiConfig } from 'wagmi';
+import { localhost } from 'viem/chains';
 
 
 const projectId = '6303751cde71dbfb1e1696e3421b8db6';

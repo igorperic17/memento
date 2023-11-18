@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -16,6 +17,7 @@ const config: Config = {
       colors: {
         "primary": "var(--primary)",
         "primary-400": "var(--primary-400)",
+        "primary-alt": "var(--primary-alt)",
         "secondary": "var(--secondary)",
         "bg": "var(--bg)",
         "bg-hover": "var(--bg-hover)",
