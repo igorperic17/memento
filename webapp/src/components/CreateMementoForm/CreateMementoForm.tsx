@@ -13,7 +13,7 @@ export default function CreateMementoForm({
   onCreate: (_: Memento, date: Date) => void
 }) {
   const [memento, setMemento] = useState<Memento>(emptyMemento)
-  const [date, setDate] = useState(new Date(Date.now()))
+  const [date, setDate] = useState<Date>()
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()

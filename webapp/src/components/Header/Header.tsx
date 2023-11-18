@@ -28,9 +28,8 @@ export default function Header({
           <a
             key={`${item.page}`}
             href={`#${item.page}`}
-            className={`cursor-pointer h-full leading-[55px] transition-colors border-b ${
-              page === item.page ? 'border-border' : 'border-bg'
-            }`}
+            className={`cursor-pointer h-full leading-[55px] transition-colors border-b ${page === item.page ? 'border-border' : 'border-bg'
+              }`}
             onClick={() => setPage(item.page)}
           >
             {item.name}
@@ -72,7 +71,7 @@ export default function Header({
                 'h-[53px] text-xl px-[34px] py-[8px] rounded-[100px] flex items-center text-xl border border-border justify-center relative top-[8px]' +
                 ' cursor-pointer transition-colors duration-300 hover:bg-bg-hover hover:border-primary'
               }
-              onClick={() => disconnect()}
+              onClick={() => { disconnect(); setShowDisconnect(false); }}
             >
               Disconnect
             </div>
