@@ -59,7 +59,6 @@ export default function Header({
                 ' cursor-pointer transition-colors duration-300 hover:bg-fg hover:text-primary'
               }
               onClick={() => {
-                alert(1)
                 open().then(console.log.bind(null, 23))
               }}
             >

@@ -44,7 +44,7 @@ export default function Home() {
 
         <CreateMementoForm onCreate={createMemento} />
 
-        {/* <MementoBox /> */}
+        <MementoBox />
       </main>
     </>
   )
