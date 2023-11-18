@@ -1,4 +1,5 @@
 import { NFTStorage, File } from 'nft.storage'
+import { decryptString, deriveCryptoKey, encryptString } from './crypto'
 
 export interface Memento {
   title: string
@@ -9,13 +10,13 @@ export interface Memento {
 export const emptyMemento: Memento = {
   title: '',
   description: '',
-  files: []
+  files: [],
 }
 
 export interface RawMemento {
   title: string
   description: string
-  files: { content: string; name: string }
+  files: { content: string; name: string }[]
 }
 
 const fileToBase64 = async (file: File): Promise<{ name: string; content: string }> => {
@@ -32,7 +33,11 @@ export const packMemento = async (memento: Memento, password: string): Promise<F
   const base64Files = await Promise.all(promises)
 
   const pack = JSON.stringify({ ...memento, files: base64Files })
-  return new File([pack], 'memento')
+
+  const key = await deriveCryptoKey(password)
+  const cypher = await encryptString(pack, key)
+
+  return new File([cypher], 'memento')
 }
 
 export const uploadMemento = async (memento: Memento, password: string) => {
@@ -45,10 +50,26 @@ export const uploadMemento = async (memento: Memento, password: string) => {
   return cid
 }
 
-// bafkreibahfwerubfdd7szxs6v2lws3femyimims5yojdfvgqxoccyomigq
 export const ipfsURL = (cid: string) => `https://${cid}.ipfs.nftstorage.link/`
 
-export const pullMemento = async (cid: string) => {
-  const pack = await fetch(ipfsURL(cid)).then<RawMemento>((t) => t.json())
-  return pack
+export const pullMemento = async (cid: string, password: string) => {
+  const cypher = await fetch(ipfsURL(cid)).then((t) => t.text())
+
+  const key = await deriveCryptoKey(password)
+  const json = await decryptString(cypher, key)
+
+  return JSON.parse(json) as RawMemento
+}
+
+window.pull = pullMemento
+
+window.test = function () {
+  uploadMemento(
+    {
+      title: 'Hi',
+      description: 'new title',
+      files: [new File(['asd'], 'helo.txt')],
+    },
+    'passhere'
+  )
 }
