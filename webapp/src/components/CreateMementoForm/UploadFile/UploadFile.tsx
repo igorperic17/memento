@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 
 type UploadFileProps = {
-    files?: FileList;
-    setFiles: (files?: FileList) => void;
+    files?: File[];
+    setFiles: (files?: File[]) => void;
 };
 
 export default function UploadFile({ files, setFiles }: UploadFileProps) {
@@ -12,7 +12,7 @@ export default function UploadFile({ files, setFiles }: UploadFileProps) {
         <div
             className={
                 'max-w-[572px] w-full border rounded-[20px] border-border h-[470px] transition-colors hover:border-fg'
-                + `${files ? ' border-fg' : ''}`}
+                + `${files?.length ? ' border-fg' : ''}`}
         >
             <label
                 htmlFor='upload'
@@ -22,7 +22,7 @@ export default function UploadFile({ files, setFiles }: UploadFileProps) {
                     if (e.dataTransfer.items?.length) {
                         let filesList = [];
                         const dT = new DataTransfer();
-                        setFiles(e.dataTransfer.files);
+                        setFiles(Array.from(e.dataTransfer.files));
                     }
                 }}
             >
@@ -30,15 +30,15 @@ export default function UploadFile({ files, setFiles }: UploadFileProps) {
                     id='upload'
                     className='display-none hidden'
                     type='file'
-                    onChange={e => e.target.files?.length && setFiles(e.target.files)}
+                    onChange={e => e.target.files?.length && setFiles(Array.from(e.target.files))}
                 />
 
                 <div className='flex flex-col text-center gap-4'>
-                    {!files ? (
+                    {!files?.length ? (
                         <Image alt='draganddrop' src='draganddrop.svg' width={218} height={107} />
                     ) : (
                         <div className='text-2xl flex flex-col gap-1'>
-                            <div className='font-bold mb-1'>Uploaded:</div> {Array.from(files).map(f => <div key={f.name}>{f.name}</div>)}
+                            <div className='font-bold mb-1'>Uploaded:</div> {files.map(f => <div key={f.name}>{f.name}</div>)}
                         </div>
                     )}
                 </div>
