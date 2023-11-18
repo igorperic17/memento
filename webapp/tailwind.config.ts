@@ -22,6 +22,7 @@ const config: Config = {
         "border": "var(--border)",
         "invalid": "var(--invalid)",
         "disabled": "var(--disabled)",
+        "watermark": "var(--watermark)",
       }
     },
   },

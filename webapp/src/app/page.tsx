@@ -7,9 +7,8 @@ import { Memento__factory } from '../../contract/typechain-types'
 import WalletProvider from '../context/WalletProvider/WalletProvider'
 import { useWeb3Modal } from '@web3modal/wagmi/react'
 import Button from '@/components/Button/Button'
-import { useAccount, useDisconnect, useWalletClient } from 'wagmi'
+import { useAccount, useDisconnect } from 'wagmi'
 import { formatAddress } from '@/utils/formatAddress'
-import UploadFile from '@/components/UploadFile/UploadFile'
 import Header from '@/components/Header/Header'
 import Main from '@/components/Main/Main'
 
@@ -26,6 +25,7 @@ const CONTACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 // cryptography
 import useModularArithmetic from './useModularArithmetic';
 import ModularArithmeticWorker from './modularArithmetic.worker';
+import CreateMementoForm from '@/components/CreateMementoForm/CreateMementoForm'
 
 export default function Home() {
     const [boxes, setBoxes] = useState<Memento.BoxStructOutput[]>([])
@@ -121,8 +121,10 @@ export default function Home() {
         <WalletProvider>
             <Header page={page} setPage={setPage} />
 
-            <main className="flex min-h-screen flex-col items-center gap-8">
+            <main className="flex min-h-screen flex-col items-center gap-8 max-w-[1400px] mx-auto">
                 <Main />
+
+                <CreateMementoForm />
 
                 <button onClick={handleComputation}>Run Computation</button>
                 <p>Progress: {progress}%</p>
@@ -136,7 +138,6 @@ export default function Home() {
                     <Button onClick={() => open()}>Connect</Button>
                 )}
 
-                <UploadFile />
 
                 <Button classes='py-12 bg-secondary' onClick={createMemento}>
                     Create Memento

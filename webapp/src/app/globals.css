@@ -9,10 +9,11 @@
   --fg: #E2E2E2;
   --primary: #BB86FC;
   --secondary: #03DAC6;
-  --border: #f1f2f5;
+  --border: rgba(226,226,226, 0.4);
   --inactive: #c4c4c4;
   --disabled: rgb(100 116 139);
   --primary-400: #332940;
+  --watermark: rgba(249, 244, 255, 0.38);
 }
 
 body {
