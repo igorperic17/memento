@@ -12,7 +12,7 @@ export default function UploadFile({ files, setFiles }: UploadFileProps) {
         <div
             className={
                 'max-w-[572px] w-full border rounded-[20px] border-border h-[470px] transition-colors hover:border-fg'
-                + `${files ? ' border-fg' : ''}`}
+                + `${files?.length ? ' border-fg' : ''}`}
         >
             <label
                 htmlFor='upload'
@@ -34,7 +34,7 @@ export default function UploadFile({ files, setFiles }: UploadFileProps) {
                 />
 
                 <div className='flex flex-col text-center gap-4'>
-                    {!files ? (
+                    {!files?.length ? (
                         <Image alt='draganddrop' src='draganddrop.svg' width={218} height={107} />
                     ) : (
                         <div className='text-2xl flex flex-col gap-1'>

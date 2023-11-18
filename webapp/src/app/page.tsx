@@ -25,6 +25,7 @@ import Main from '@/components/Main/Main'
 import useModularArithmetic from './useModularArithmetic';
 import ModularArithmeticWorker from './modularArithmetic.worker';
 import CreateMementoForm from '@/components/CreateMementoForm/CreateMementoForm'
+import LoadingDialog from '@/components/CreateMementoForm/LoadingDialog/LoadingDialog'
 
 export default function Home() {
     const [boxes, setBoxes] = useState<Memento.BoxStructOutput[]>([])
@@ -109,10 +110,6 @@ export default function Home() {
                     <Button onClick={() => open()}>Connect</Button>
                 )}
 
-
-                <Button classes='py-12 bg-secondary' onClick={createMemento}>
-                    Create Memento
-                </Button>
                 <hr className="w-80" />
                 <h2>Boxes</h2>
                 {boxes.map((t) => (
@@ -123,7 +120,6 @@ export default function Home() {
                         <div>Email: {t.receiver_email}</div>
                     </div>
                 ))}
-
             </main>
         </WalletProvider>
     )
