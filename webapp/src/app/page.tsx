@@ -7,9 +7,8 @@ import { Memento__factory } from '../../contract/typechain-types'
 import WalletProvider from '../context/WalletProvider/WalletProvider'
 import { useWeb3Modal } from '@web3modal/wagmi/react'
 import Button from '@/components/Button/Button'
-import { useAccount, useDisconnect, useWalletClient } from 'wagmi'
+import { useAccount, useDisconnect } from 'wagmi'
 import { formatAddress } from '@/utils/formatAddress'
-import UploadFile from '@/components/UploadFile/UploadFile'
 import Header from '@/components/Header/Header'
 import Main from '@/components/Main/Main'
 
@@ -139,7 +138,6 @@ export default function Home() {
                     <Button onClick={() => open()}>Connect</Button>
                 )}
 
-                <UploadFile />
 
                 <Button classes='py-12 bg-secondary' onClick={createMemento}>
                     Create Memento
