@@ -44,7 +44,7 @@ export default function Home() {
 
     await contract.create(id, cid, date!.getTime(), { value: 100 }).then((t) => t.wait())
 
-    setCurrentStep(4);
+    setCurrentStep(5);
   };
 
   return (
