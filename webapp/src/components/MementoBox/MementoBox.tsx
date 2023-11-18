@@ -48,12 +48,12 @@ export default function MementoBox() {
       <div className="w-full border border-border rounded-[20px] py-[26px] px-[42px]">
         {boxes.length ? (
           <table className="w-full">
-            <tr className="text-watermark text-2xl font-medium">
+            <tbody>
+            <tr className="text-watermark text-2xl font-medium mb-2">
               <td>Title</td>
               <td>Date to Unseal</td>
               <td>Action</td>
             </tr>
-            <tbody className="mt-2">
               {boxes.map((box, i) => (
                 <tr key={box.id}>
                   <td className="py-1">Memento {i}</td>

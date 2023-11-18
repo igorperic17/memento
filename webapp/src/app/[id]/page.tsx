@@ -100,6 +100,7 @@ export default function MementoView() {
       {(step === 0 || step === 1) && (
         <div className="w-full border border-border rounded-[20px] mt-[44px] py-[31px] px-[42px] mb-[36px]">
           <table className="w-full">
+            <tbody>
             <tr className="text-watermark text-2xl font-medium h-[60px]">
               <td>Title</td>
               <td>Date Sent</td>
@@ -107,7 +108,6 @@ export default function MementoView() {
               <td>Total Duration</td>
               <td>Countdown</td>
             </tr>
-            <tbody>
               <tr className="h-[60px]">
                 <td>-</td>
                 <td>-</td>

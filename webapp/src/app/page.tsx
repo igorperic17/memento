@@ -33,7 +33,7 @@ export default function Home() {
 
   const createMemento = async (memento: Memento, date: Date) => {
     setShowCreateDialog(true);
-    const pwd = (Math.random() * 1e8).toString();
+    const pwd = Math.round(Math.random() * 1e8).toString();
     setPwd(pwd);
     const cid = await uploadMemento(memento, pwd)
     setCurrentStep(3)
