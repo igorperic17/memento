@@ -1,41 +1,46 @@
 import React, { useEffect, useState } from 'react'
 import { Memento, Memento__factory } from '../../../contract/typechain-types'
 // import { BrowserProvider } from 'ethers'
-import {} from '@web3modal/ethers5/react'
+import { useWeb3ModalAccount } from '@web3modal/ethers5/react'
 
 import Image from 'next/image'
+import { useContract } from '@/services/contract'
+import moment from 'moment'
+import Link from 'next/link'
 
 export default function MementoBox() {
-  const [boxes, setBoxes] = useState<Memento.BoxStructOutput[]>([])
-  //   const { address } = useAccount()
-  const address = ''
-
-  const getContract = async () => {
-    const provider = new BrowserProvider((window as any).ethereum)
-    const signer = await provider.getSigner()
-
-    const contract = Memento__factory.connect(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!, signer)
-    return { contract, signer }
-  }
+  const [boxes, setBoxes] = useState<any[]>([])
+  const { getContract } = useContract()
+  const { isConnected } = useWeb3ModalAccount()
 
   useEffect(() => {
     const loadMementoes = async () => {
-      const { contract, signer } = await getContract()
-      const events = await contract.queryFilter(contract.getEvent('MementoCreated'))
+      if (!isConnected) return
 
-      const ids = events.map((t) => t.args.id)
+      const contract = getContract()
 
-      const mementoes = await Promise.all(ids.map((t) => contract.getMemento(t)))
+      const currentBlock = await contract.provider.getBlockNumber()
+      const fromBlock = Math.max(currentBlock - 1024, 0) // Ensure we don't go below block 0
+      const toBlock = currentBlock
+
+      const events = await contract.queryFilter(
+        contract.filters.MementoCreated(),
+        fromBlock,
+        toBlock
+      )
+
+      const ids = events.map((t) => t.args!.id)
+
+      const mementoes = await Promise.all(
+        ids.map((id) => {
+          return contract.getMemento(id).then((t: any) => ({ ...t, id }))
+        })
+      )
       setBoxes(mementoes)
     }
 
     loadMementoes()
-  }, [address])
-
-  // const boxes = Array.from({ length: 10 }).map((_, id) => ({
-  //     title: 'title' + id,
-  //     mementoCid: id
-  // }));
+  }, [isConnected])
 
   return (
     <section id="box" className="w-full mt-[40px]">
@@ -45,19 +50,17 @@ export default function MementoBox() {
           <table className="w-full">
             <tr className="text-watermark text-2xl font-medium">
               <td>Title</td>
-              <td>Date Sent</td>
               <td>Date to Unseal</td>
-              <td>Total Duration</td>
-              <td>Countdown</td>
+              <td>Action</td>
             </tr>
-            <tbody>
-              {boxes.map((box) => (
-                <tr key={`row-${box.mementoCid}`}>
-                  <td>{box.mementoCid}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+            <tbody className="mt-2">
+              {boxes.map((box, i) => (
+                <tr key={box.id}>
+                  <td className="py-1">Memento {i}</td>
+                  <td>{moment(new Date(parseInt(box.expirationDate.toString()))).fromNow()}</td>
+                  <td>
+                    <Link href={`/${box.id}`}>Open</Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
