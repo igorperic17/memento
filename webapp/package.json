@@ -11,10 +11,13 @@
     "deploy-contract": "cd contract && hardhat run --network localhost scripts/deploy.ts"
   },
   "dependencies": {
+    "@web3modal/wagmi": "^3.3.2",
     "ethers": "^6.8.1",
     "next": "14.0.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "viem": "^1.19.3",
+    "wagmi": "^1.4.7"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
