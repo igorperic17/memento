@@ -1,5 +1,5 @@
 .shadow {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -9,13 +9,13 @@
 }
 
 .dialog {
-    position: absolute;
+    position: fixed;
     z-index: 2;
     left: 50%;
     top: 50%;
-    height: 560px;
-    width: 690px;
-    background: rgba(51, 41, 64, 1);
+    height: fit-content;
+    width: 573px;
+    background: #585062;
     transform: translate(-50%, -50%);
     border-radius: 20px;
     padding: 24px 48px;
@@ -25,4 +25,23 @@
     gap: 13px;
     justify-content: center;
     align-items: center;
+}
+
+.progressList {
+    list-style: none;
+}
+
+.progressList li::before {
+    content: "\2022";
+    color: var(--watermark);
+    font-weight: bold;
+    display: inline-block;
+    width: 16px;
+    font-size: 42px;
+    margin-right: 4px;
+    transform: translate(0, 12px);
+}
+
+.completedOption::before {
+    color: var(--secondary) !important;
 }

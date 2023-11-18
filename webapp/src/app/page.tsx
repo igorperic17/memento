@@ -9,6 +9,7 @@ import MementoBox from '@/components/MementoBox/MementoBox'
 
 import { Memento, uploadMemento } from '@/services/memento'
 import { useContract } from '@/services/contract'
+import LoadingDialog from '@/components/CreateMementoForm/LoadingDialog/LoadingDialog'
 
 // Before starting run ETH Node with: npm run evm-node
 // Then deploy contract locally with: npm run deploy-contract
@@ -22,18 +23,29 @@ import { useContract } from '@/services/contract'
 export default function Home() {
   const [page, setPage] = useState('view')
 
-  const { getContract } = useContract()
+  const [currentStep, setCurrentStep] = useState(0);
+  const [showCreateDialog, setShowCreateDialog] = useState(false);
+
+  const [id, setId] = useState('');
+  const [pwd, setPwd] = useState('');
+
+  const { getContract } = useContract();
 
   const createMemento = async (memento: Memento, date: Date) => {
-    const cid = await uploadMemento(memento, 'pwd')
+    setShowCreateDialog(true);
+    const pwd = (Math.random() * 1e8).toString();
+    setPwd(pwd);
+    const cid = await uploadMemento(memento, pwd)
+    setCurrentStep(3)
 
     const contract = getContract()
     const id = new Date().getTime()
+    setId(id.toString());
 
     await contract.create(id, cid, date!.getTime(), { value: 100 }).then((t) => t.wait())
 
-    alert(`Crated memento with id ${id}`)
-  }
+    setCurrentStep(4);
+  };
 
   return (
     <>
@@ -43,6 +55,14 @@ export default function Home() {
         <Main />
 
         <CreateMementoForm onCreate={createMemento} />
+
+        {showCreateDialog &&
+          <LoadingDialog
+            currentStep={currentStep}
+            onClose={() => { setShowCreateDialog(false); setId(''); setPwd(''); }}
+            link={global.window ? `${window.location.host}/${id}` : id}
+          />
+        }
 
         <MementoBox />
       </main>

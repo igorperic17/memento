@@ -10,8 +10,8 @@ export default function Header({
   setPage: (page: string) => void
 }) {
   const items = [
-    { name: 'Memento Box', page: 'view' },
     { name: 'Send a Memento', page: 'send' },
+    { name: 'Memento Box', page: 'box' },
     { name: 'Contact Us', page: 'contact' },
   ]
   const { open } = useWeb3Modal()

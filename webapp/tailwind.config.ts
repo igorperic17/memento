@@ -20,6 +20,7 @@ const config: Config = {
         "primary-alt": "var(--primary-alt)",
         "secondary": "var(--secondary)",
         "bg": "var(--bg)",
+        "bg-alt": "var(--bg-alt)",
         "bg-hover": "var(--bg-hover)",
         "fg": "var(--fg)",
         "fg-disabled": "var(--fg-disabled)",
