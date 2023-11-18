@@ -12,8 +12,8 @@ export default function Button(props: ButtonProps) {
         <button
             {...extraProps}
             className={
-                'bg-primary px-6 py-2 text-white rounded-[20px] transition-colors '
-                + 'hover:bg-primary-hover disabled:bg-disabled'
+                'bg-primary-400 px-[64px] py-[12px] text-white rounded-[20px] transition-colors ease-in-out duration-300 '
+                + 'hover:bg-primary hover:text-primary-400 disabled:bg-disabled'
                 + (classes ? ` ${classes}` : '')
             }
         >

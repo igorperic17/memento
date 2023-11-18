@@ -12,11 +12,13 @@ import { formatAddress } from '@/utils/formatAddress'
 import UploadFile from '@/components/UploadFile/UploadFile'
 import { Client } from '@web3-storage/w3up-client'
 import FilesList from '@/components/FilesList/FilesList'
+import Header from '@/components/Header/Header'
+import Main from '@/components/Main/Main'
 
 // Before starting run ETH Node with: npm run evm-node
 // Then deploy contract locally with: npm run deploy-contract
 // Add address output bellow (LATER WILL BE IN ENV)
-const CONTACT_ADDRESS = '0x5fbdb2315678afecb367f032d93f642f64180aa3'
+const CONTACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
 // Setup local metamask
 // RPC_URL: http://127.0.0.1:8545/
@@ -26,6 +28,7 @@ const CONTACT_ADDRESS = '0x5fbdb2315678afecb367f032d93f642f64180aa3'
 export default function Home() {
     const [boxes, setBoxes] = useState<Memento.BoxStructOutput[]>([])
     const [storageClient, setStorageClient] = useState<Client>();
+    const [page, setPage] = useState('view');
     // TODO: memos, state, etc...
     const { open } = useWeb3Modal();
     const { disconnect } = useDisconnect();
@@ -34,7 +37,6 @@ export default function Home() {
     const getContract = async () => {
         // TODO: Wallet Connect
         const provider = new BrowserProvider((window as any).ethereum)
-        console.log(address);
         const signer = await provider.getSigner(address)
 
         const contract = Memento__factory.connect(CONTACT_ADDRESS, signer)
@@ -77,8 +79,12 @@ export default function Home() {
 
     return (
         <WalletProvider>
-            <main className="flex min-h-screen flex-col items-center p-24 gap-8">
+            <Header page={page} setPage={setPage} />
 
+            <main className="flex min-h-screen flex-col items-center gap-8">
+
+                <Main />
+                
                 {address ? (
                     <>
                         <Button onClick={() => disconnect()}>Disconnect</Button>
@@ -89,7 +95,7 @@ export default function Home() {
                 )}
 
                 <UploadFile client={storageClient} setClient={setStorageClient} />
-                 <FilesList client={storageClient} setClient={setStorageClient} />
+                <FilesList client={storageClient} setClient={setStorageClient} />
 
                 <Button classes='py-12 bg-secondary' onClick={createMemento}>
                     Create Memento

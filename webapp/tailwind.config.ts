@@ -15,6 +15,7 @@ const config: Config = {
       },
       colors: {
         "primary": "var(--primary)",
+        "primary-400": "var(--primary-400)",
         "secondary": "var(--secondary)",
         "bg": "var(--bg)",
         "fg": "var(--fg)",
