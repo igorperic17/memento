@@ -18,6 +18,7 @@ const config: Config = {
         "primary-400": "var(--primary-400)",
         "secondary": "var(--secondary)",
         "bg": "var(--bg)",
+        "bg-hover": "var(--bg-hover)",
         "fg": "var(--fg)",
         "border": "var(--border)",
         "invalid": "var(--invalid)",

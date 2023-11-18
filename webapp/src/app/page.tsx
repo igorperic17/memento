@@ -14,8 +14,7 @@ import Main from '@/components/Main/Main'
 
 // Before starting run ETH Node with: npm run evm-node
 // Then deploy contract locally with: npm run deploy-contract
-// Add address output bellow (LATER WILL BE IN ENV)
-const CONTACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+// Add address output to env
 
 // Setup local metamask
 // RPC_URL: http://127.0.0.1:8545/
@@ -74,48 +73,20 @@ export default function Home() {
         });
     };
 
-    const getContract = async () => {
-        // TODO: Wallet Connect
-        const provider = new BrowserProvider((window as any).ethereum)
-        const signer = await provider.getSigner(address)
 
-        const contract = Memento__factory.connect(CONTACT_ADDRESS, signer)
-        return { contract, signer }
-    }
+    // const loadMementoes = async () => {
+    //     const { contract, signer } = await getContract()
+    //     const events = await contract.queryFilter(contract.getEvent('MementoCreated'))
 
-    const createMemento = async () => {
-        const { contract, signer } = await getContract()
+    //     const ids = events.map((t) => t.args.id)
 
-        // Create. TODO: uuid
-        const id = Date.now().toString()
+    //     const mementoes = await Promise.all(ids.map((t) => contract.getMemento(t)))
+    //     setBoxes(mementoes)
+    // }
 
-        await contract
-            .create(
-                id,
-                signer.address,
-                new Uint8Array([123]),
-                Date.now() + 1000,
-                'example@will.be.encrypted.com'
-            )
-            .then((t) => t.wait())
-
-        alert(`Crated memento with id ${id}`)
-        loadMementoes()
-    }
-
-    const loadMementoes = async () => {
-        const { contract, signer } = await getContract()
-        const events = await contract.queryFilter(contract.getEvent('MementoCreated'))
-
-        const ids = events.map((t) => t.args.id)
-
-        const mementoes = await Promise.all(ids.map((t) => contract.getMemento(t)))
-        setBoxes(mementoes)
-    }
-
-    useEffect(() => {
-        loadMementoes()
-    }, [])
+    // useEffect(() => {
+    //     loadMementoes()
+    // }, [])
 
     return (
         <WalletProvider>
