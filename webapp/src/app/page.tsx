@@ -9,7 +9,9 @@ import { useWeb3Modal } from '@web3modal/wagmi/react'
 import Button from '@/components/Button/Button'
 import { useAccount, useDisconnect, useWalletClient } from 'wagmi'
 import { formatAddress } from '@/utils/formatAddress'
-import { create } from '@web3-storage/w3up-client'
+import UploadFile from '@/components/UploadFile/UploadFile'
+import { Client } from '@web3-storage/w3up-client'
+import FilesList from '@/components/FilesList/FilesList'
 
 // Before starting run ETH Node with: npm run evm-node
 // Then deploy contract locally with: npm run deploy-contract
@@ -23,17 +25,11 @@ const CONTACT_ADDRESS = '0x5fbdb2315678afecb367f032d93f642f64180aa3'
 
 export default function Home() {
     const [boxes, setBoxes] = useState<Memento.BoxStructOutput[]>([])
+    const [storageClient, setStorageClient] = useState<Client>();
     // TODO: memos, state, etc...
     const { open } = useWeb3Modal();
     const { disconnect } = useDisconnect();
     const { address } = useAccount();
-
-
-    useEffect(() => {
-        create().then(client => {
-            client.createSpace('my-mementos')
-        })
-    }, []);
 
     const getContract = async () => {
         // TODO: Wallet Connect
@@ -92,6 +88,9 @@ export default function Home() {
                     <Button onClick={() => open()}>Connect</Button>
                 )}
 
+                <UploadFile client={storageClient} setClient={setStorageClient} />
+                 <FilesList client={storageClient} setClient={setStorageClient} />
+
                 <Button classes='py-12 bg-secondary' onClick={createMemento}>
                     Create Memento
                 </Button>
@@ -105,6 +104,7 @@ export default function Home() {
                         <div>Email: {t.receiver_email}</div>
                     </div>
                 ))}
+
             </main>
         </WalletProvider>
     )

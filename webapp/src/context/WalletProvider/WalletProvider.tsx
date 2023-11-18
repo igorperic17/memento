@@ -4,6 +4,8 @@ import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
 
 import { WagmiConfig } from 'wagmi'
 import { localhost } from 'viem/chains'
+import { useEffect } from 'react';
+import { create } from '@web3-storage/w3up-client';
 
 
 const projectId = '6303751cde71dbfb1e1696e3421b8db6';

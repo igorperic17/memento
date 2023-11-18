@@ -18,7 +18,8 @@
     "react": "^18",
     "react-dom": "^18",
     "viem": "^1.19.3",
-    "wagmi": "^1.4.7"
+    "wagmi": "^1.4.7",
+    "web3.storage": "^4.5.5"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
