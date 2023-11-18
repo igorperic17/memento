@@ -61,6 +61,7 @@ export default function Home() {
             currentStep={currentStep}
             onClose={() => { setShowCreateDialog(false); setId(''); setPwd(''); }}
             link={global.window ? `${window.location.host}/${id}` : id}
+            password={pwd}
           />
         }
 
