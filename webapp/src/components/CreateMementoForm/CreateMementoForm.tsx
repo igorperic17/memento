@@ -13,7 +13,7 @@ export default function CreateMementoForm() {
     const [memento, setMemento] = useState<Memento>(emptyMemento);
     // const [trigger, setTrigger] = useState('');
     const { address } = useAccount();
-    const [date, setDate] = useState<Date>();
+    const [date, setDate] = useState(new Date(Date.now()));
 
     const getContract = async () => {
         const provider = new BrowserProvider((window as any).ethereum);
@@ -21,7 +21,7 @@ export default function CreateMementoForm() {
 
         const contract = Memento__factory.connect(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!, signer);
         return { contract, signer };
-    }
+    };
 
     const createMemento = async () => {
         if (date) {
@@ -33,12 +33,13 @@ export default function CreateMementoForm() {
             await contract.create(
                 id,
                 cid,
-                date!.getTime()
+                date!.getTime(),
+                { value: 100 }
             ).then((t) => t.wait());
 
             alert(`Crated memento with id ${id}`);
         }
-    }
+    };
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -47,13 +48,13 @@ export default function CreateMementoForm() {
 
     const handleChange = (field: keyof Memento) => (value: any) => {
         setMemento({ ...memento, [field]: value });
-    }
+    };
 
     const isEnabled = memento.title && memento.description && memento.files.length && date;
 
     return (
-        <form className='w-full transition-colors duration-300' onSubmit={onSubmit}>
-            <h3 className='text-2xl font-light mb-[8px]'>Step1. Write a memento to someone</h3>
+        <form id='send' className='w-full transition-colors duration-300 mt-[40px]' onSubmit={onSubmit}>
+            <h3 className='text-3xl font-light mb-[18px] capitalize text-center'>Write a memento to someone</h3>
             <div className='flex gap-[20px]'>
                 <div className='max-w-[800px] w-full border border-border rounded-[20px] h-[470px] py-[24px] px-[42px] text-2xl transition-colors duration-300 hover:border-fg'>
                     <InputField value={memento.title} setValue={handleChange('title')} placeholder='Enter a subject' />

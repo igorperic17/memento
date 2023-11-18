@@ -12,7 +12,7 @@ export default function Header({ page, setPage }: { page: string; setPage: (page
     const { open } = useWeb3Modal();
     const { disconnect } = useDisconnect();
 
-    const { address, isConnected } = useAccount();
+    const { address } = useAccount();
 
     const [showDisconnect, setShowDisconnect] = useState(false);
 
@@ -20,19 +20,20 @@ export default function Header({ page, setPage }: { page: string; setPage: (page
         <div className='w-full py-[10px]'>
             <div className='flex w-fit flex h-[55px] mr-auto pl-[30px] gap-8 items-center gap-[32px] text-2xl'>
                 {items.map(item => (
-                    <div
+                    <a
                         key={`${item.page}`}
+                        href={`#${item.page}`} 
                         className={
                             `cursor-pointer h-full leading-[55px] transition-colors border-b ${page === item.page ? 'border-border' : 'border-bg'}`
                         }
                         onClick={() => setPage(item.page)}
                     >
                         {item.name}
-                    </div>
+                    </a>
                 ))}
 
                 <div className='absolute right-[20px] top-[20px]' onMouseLeave={() => setShowDisconnect(false)}>
-                    {isConnected && address ? (
+                    {address ? (
                         <div
                             className={
                                 'h-[53px] text-xl px-[34px] py-[8px] rounded-[100px] flex items-center text-xl border border-border'
@@ -45,10 +46,9 @@ export default function Header({ page, setPage }: { page: string; setPage: (page
                         </div>
                     ) : (
                         <button
-                            type='button'
                             className={
                                 'bg-primary w-[202px] h-[53px] text-xl px-[34px] py-[8px] rounded-[20px] flex items-center font-medium'
-                                + ' transition-colors duration-300 hover:bg-fg hover:text-primary'
+                                + ' cursor-pointer transition-colors duration-300 hover:bg-fg hover:text-primary'
                             }
                             onClick={() => open()}
                         >
@@ -56,7 +56,7 @@ export default function Header({ page, setPage }: { page: string; setPage: (page
                         </button>
                     )}
 
-                    {showDisconnect && isConnected &&
+                    {showDisconnect &&
                         <div
                             className={
                                 'h-[53px] text-xl px-[34px] py-[8px] rounded-[100px] flex items-center text-xl border border-border justify-center relative top-[8px]'
@@ -66,7 +66,6 @@ export default function Header({ page, setPage }: { page: string; setPage: (page
                         >
                             Disconnect
                         </div>
-
                     }
                 </div>
             </div>
