@@ -10,7 +10,7 @@ export default function InputField({ value, setValue, classes, ...extraProps }: 
         <input
             {...extraProps}
             className={
-                'outline-none pb-1 bg-bg border-border border-b w-full placeholder:text-watermark'
+                'outline-none pb-1 px-1 bg-bg border-border border-b w-full placeholder:text-watermark'
                 + (classes ? ` ${classes}` : '')
 
             }

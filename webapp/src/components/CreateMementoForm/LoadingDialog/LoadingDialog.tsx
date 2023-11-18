@@ -53,7 +53,10 @@ export default function LoadingDialog({ currentStep, onClose, link, password }: 
                     {steps.map((step, id) => (
                         <li
                             key={step.name}
-                            className={id <= currentStep ? ' completedOption' : ' text-watermark'}
+                            className={
+                                (id < currentStep ? ' completedOption' : ' text-watermark')
+                                + (id === currentStep ? ' loadingOption' : '')
+                            }
                         >
                             {step.name}...
                         </li>

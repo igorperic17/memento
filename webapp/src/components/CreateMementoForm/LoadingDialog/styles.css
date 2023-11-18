@@ -45,3 +45,22 @@
 .completedOption::before {
     color: var(--secondary) !important;
 }
+
+@keyframes load {
+    from {
+        transform: translate(0, 12px) scale(1);
+    }
+
+    to {
+        transform: translate(0, 15px) scale(2);
+    }
+}
+
+.loadingOption::before {
+    animation-duration: 1.5s;
+    animation-name: load;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transform-origin: center;
+    transform: translate(0, 12px) scale(1);
+}
