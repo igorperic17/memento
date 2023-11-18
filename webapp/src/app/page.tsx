@@ -1,9 +1,7 @@
 'use client'
 
-import { BrowserProvider } from 'ethers'
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Memento } from '../../contract/typechain-types/Memento'
-import { Memento__factory } from '../../contract/typechain-types'
 import WalletProvider from '../context/WalletProvider/WalletProvider'
 import { useWeb3Modal } from '@web3modal/wagmi/react'
 import Button from '@/components/Button/Button'
@@ -11,6 +9,7 @@ import { useAccount, useDisconnect } from 'wagmi'
 import { formatAddress } from '@/utils/formatAddress'
 import Header from '@/components/Header/Header'
 import Main from '@/components/Main/Main'
+import CreateMementoForm from '@/components/CreateMementoForm/CreateMementoForm'
 
 // Before starting run ETH Node with: npm run evm-node
 // Then deploy contract locally with: npm run deploy-contract
@@ -21,11 +20,6 @@ import Main from '@/components/Main/Main'
 // CHAIN_ID: 31337
 // Import first account into Metamask from run eth-node output
 
-// cryptography
-import useModularArithmetic from './useModularArithmetic';
-import ModularArithmeticWorker from './modularArithmetic.worker';
-import CreateMementoForm from '@/components/CreateMementoForm/CreateMementoForm'
-import LoadingDialog from '@/components/CreateMementoForm/LoadingDialog/LoadingDialog'
 
 export default function Home() {
     const [boxes, setBoxes] = useState<Memento.BoxStructOutput[]>([])
@@ -35,72 +29,15 @@ export default function Home() {
     const { disconnect } = useDisconnect();
     const { address } = useAccount();
 
-    const e = BigInt(3);
-    const m = BigInt(1000000007); // must be prime
-    const [forwardComputation, backwardComputation] = useModularArithmetic(e, m);
-    const [result, setResult] = useState<string>('');
-    const [progress, setProgress] = useState<number>(0);
-    const [worker, setWorker] = useState<Worker | null>(null);
-
-    useEffect(() => {
-        const newWorker = new ModularArithmeticWorker();
-        newWorker.onmessage = (e) => {
-            console.log("BLABLA");
-            if (e.data.progress) {
-                setProgress(e.data.progress);
-            }
-            if (e.data.result) {
-                setResult(`Result: ${e.data.result}`);
-            }
-        };
-        // newWorker.onerror = (error) => {
-        //     console.error('Error from worker:', error.message);
-        // };
-        setWorker(newWorker);
-
-        return () => {
-            newWorker.terminate();
-        };
-    }, []);
-
-    const handleComputation = () => {
-        console.log(worker);
-        worker?.postMessage({
-            x: '12345',
-            e: '3',
-            m: '1000000007',
-            steps: '1000000',
-            type: 'forward' // or 'backward'
-        });
-    };
-
-
-    // const loadMementoes = async () => {
-    //     const { contract, signer } = await getContract()
-    //     const events = await contract.queryFilter(contract.getEvent('MementoCreated'))
-
-    //     const ids = events.map((t) => t.args.id)
-
-    //     const mementoes = await Promise.all(ids.map((t) => contract.getMemento(t)))
-    //     setBoxes(mementoes)
-    // }
-
-    // useEffect(() => {
-    //     loadMementoes()
-    // }, [])
-
     return (
         <WalletProvider>
             <Header page={page} setPage={setPage} />
 
-            <main className="flex min-h-screen flex-col items-center gap-8 max-w-[1400px] mx-auto">
+            <main className="flex min-h-screen flex-col items-center gap-8 max-w-[1400px] mx-auto px-4">
                 <Main />
 
                 <CreateMementoForm />
 
-                <button onClick={handleComputation}>Run Computation</button>
-                <p>Progress: {progress}%</p>
-                <p>{result}</p>
                 {address ? (
                     <>
                         <Button onClick={() => disconnect()}>Disconnect</Button>

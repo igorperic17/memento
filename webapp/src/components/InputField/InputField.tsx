@@ -1,17 +1,21 @@
 import React from 'react';
 
-type InputFieldProps = {
+interface InputFieldProps extends React.ButtonHTMLAttributes<HTMLInputElement> {
     value: string;
     setValue: (val: string) => void;
-    placeholder?: string;
+    classes?: string;
 }
-export default function InputField({ value, setValue, placeholder }: InputFieldProps) {
+export default function InputField({ value, setValue, classes, ...extraProps }: InputFieldProps) {
     return (
         <input
-            className='outline-none pb-1 bg-bg border-border border-b w-full placeholder:text-watermark'
+            {...extraProps}
+            className={
+                'outline-none pb-1 bg-bg border-border border-b w-full placeholder:text-watermark'
+                + (classes ? ` ${classes}` : '')
+
+            }
             value={value}
             onChange={e => setValue(e.target.value)}
-            placeholder={placeholder}
         />
     );
 }

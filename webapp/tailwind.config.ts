@@ -20,6 +20,7 @@ const config: Config = {
         "bg": "var(--bg)",
         "bg-hover": "var(--bg-hover)",
         "fg": "var(--fg)",
+        "fg-disabled": "var(--fg-disabled)",
         "border": "var(--border)",
         "invalid": "var(--invalid)",
         "disabled": "var(--disabled)",
