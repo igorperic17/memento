@@ -15,14 +15,13 @@ describe('Memento', function () {
   it('Should create memento', async function () {
     const { memento, owner } = await loadFixture(deploy)
 
-    const tx = await memento.create('123', owner.address, new Uint8Array(0), 1, '')
+    const tx = await memento.create('123', 'cid123', 1, { value: 2 })
     const receipt = await tx.wait()
 
     expect(receipt?.logs.length).to.equal(1)
-
     const box = await memento.getMemento('123')
 
     expect(box.sender).to.equal(owner.address)
-    expect(box.recipient).to.equal(owner.address)
+    expect(box.mementoCid).to.equal('cid123')
   })
 })
