@@ -7,8 +7,9 @@ import { Memento__factory } from '../../contract/typechain-types'
 import WalletProvider from '../context/WalletProvider/WalletProvider'
 import { useWeb3Modal } from '@web3modal/wagmi/react'
 import Button from '@/components/Button/Button'
-import { useAccount, useDisconnect } from 'wagmi'
+import { useAccount, useDisconnect, useWalletClient } from 'wagmi'
 import { formatAddress } from '@/utils/formatAddress'
+import { create } from '@web3-storage/w3up-client'
 
 // Before starting run ETH Node with: npm run evm-node
 // Then deploy contract locally with: npm run deploy-contract
@@ -27,10 +28,18 @@ export default function Home() {
     const { disconnect } = useDisconnect();
     const { address } = useAccount();
 
+
+    useEffect(() => {
+        create().then(client => {
+            client.createSpace('my-mementos')
+        })
+    }, []);
+
     const getContract = async () => {
         // TODO: Wallet Connect
         const provider = new BrowserProvider((window as any).ethereum)
-        const signer = await provider.getSigner()
+        console.log(address);
+        const signer = await provider.getSigner(address)
 
         const contract = Memento__factory.connect(CONTACT_ADDRESS, signer)
         return { contract, signer }
