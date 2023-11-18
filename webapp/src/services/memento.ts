@@ -6,6 +6,12 @@ export interface Memento {
   files: File[]
 }
 
+export const emptyMemento: Memento = {
+  title: '',
+  description: '',
+  files: []
+}
+
 export interface RawMemento {
   title: string
   description: string
