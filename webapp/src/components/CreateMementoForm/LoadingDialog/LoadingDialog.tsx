@@ -20,7 +20,6 @@ export default function LoadingDialog({ currentStep, onClose, link, password }: 
         };
     }, []);
 
-
     const steps = [
         { name: 'Crafting your unique key' },
         { name: 'Securing your Memento' },
@@ -50,11 +49,11 @@ export default function LoadingDialog({ currentStep, onClose, link, password }: 
                         Just a moment, this may take a little while. Please don’t close or refresh the page, it'll stop your note from being sent.
                     </div>
                 </div>
-                <ul className='flex flex-col gap-[8px] list-disc text-xl'>
+                <ul className='progressList flex flex-col gap-[8px] list-disc text-xl pb-2'>
                     {steps.map((step, id) => (
                         <li
                             key={step.name}
-                            className={id <= currentStep ? ' ' : ' text-watermark'}
+                            className={id <= currentStep ? ' completedOption' : ' text-watermark'}
                         >
                             {step.name}...
                         </li>

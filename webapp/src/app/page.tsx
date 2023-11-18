@@ -25,21 +25,24 @@ export default function Home() {
 
   const [currentStep, setCurrentStep] = useState(0);
   const [showCreateDialog, setShowCreateDialog] = useState(false);
-  const [cid, setCid] = useState('');
 
-  const { getContract } = useContract()
+  const [id, setId] = useState('');
+  const [pwd, setPwd] = useState('');
+
+  const { getContract } = useContract();
 
   const createMemento = async (memento: Memento, date: Date) => {
     setShowCreateDialog(true);
     const cid = await uploadMemento(memento, 'pwd')
-    setCid(cid);
     setCurrentStep(3)
 
     const contract = getContract()
     const id = new Date().getTime()
+    setId(id.toString());
 
     await contract.create(id, cid, date!.getTime(), { value: 100 }).then((t) => t.wait())
 
+    setPwd((Math.random() * 1e8).toString());
     setCurrentStep(4);
   }
 
@@ -55,8 +58,8 @@ export default function Home() {
         {showCreateDialog &&
           <LoadingDialog
             currentStep={currentStep}
-            onClose={() => { setShowCreateDialog(false); setCid(''); }}
-            link={cid}
+            onClose={() => { setShowCreateDialog(false); setId(''); setPwd(''); }}
+            link={global.window ? `${window.location.host}/${id}` : id}
           />
         }
 
