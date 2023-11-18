@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "evm-node": "cd contract && hardhat node",
+    "deploy-contract": "cd contract && hardhat run --network localhost scripts/deploy.ts"
   },
   "dependencies": {
     "next": "14.0.3",
