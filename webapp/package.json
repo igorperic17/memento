@@ -11,6 +11,7 @@
     "deploy-contract": "cd contract && hardhat run --network localhost scripts/deploy.ts"
   },
   "dependencies": {
+    "ethers": "^6.8.1",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18"
