@@ -1,5 +1,6 @@
 import { NFTStorage, File } from 'nft.storage'
 import { decryptString, deriveCryptoKey, encryptString } from './crypto'
+import {} from './vdf'
 
 export interface Memento {
   title: string
@@ -59,17 +60,4 @@ export const pullMemento = async (cid: string, password: string) => {
   const json = await decryptString(cypher, key)
 
   return JSON.parse(json) as RawMemento
-}
-
-window.pull = pullMemento
-
-window.test = function () {
-  uploadMemento(
-    {
-      title: 'Hi',
-      description: 'new title',
-      files: [new File(['asd'], 'helo.txt')],
-    },
-    'passhere'
-  )
 }

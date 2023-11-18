@@ -1,4 +1,5 @@
-use actix_web::{web, App, HttpServer, HttpResponse, Responder};
+use actix_cors::Cors;
+use actix_web::{web, App, HttpResponse, HttpServer, Responder};
 use num_bigint::BigUint;
 use num_traits::{One, Zero};
 use serde_derive::{Deserialize, Serialize};
@@ -102,7 +103,7 @@ async fn backward(request: web::Json<ComputationRequest>) -> impl Responder {
     let m = BigUint::parse_bytes(request.m.as_bytes(), 10).unwrap();
 
     let phi = m.clone() - BigUint::one(); // Assuming 'm' is the modulus for the inverse calculation
-    let d = mod_inverse(&e, &phi);        // Calculate the modular inverse of 'e'
+    let d = mod_inverse(&e, &phi); // Calculate the modular inverse of 'e'
 
     let start_time = Instant::now();
     let result = backward_computation(&y, &d, &m, request.steps);
@@ -114,11 +115,11 @@ async fn backward(request: web::Json<ComputationRequest>) -> impl Responder {
     })
 }
 
-
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
+            .wrap(Cors::permissive())
             .route("/forward", web::post().to(forward))
             .route("/backward", web::post().to(backward))
     })
