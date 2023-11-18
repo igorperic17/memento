@@ -10,8 +10,6 @@ import Button from '@/components/Button/Button'
 import { useAccount, useDisconnect, useWalletClient } from 'wagmi'
 import { formatAddress } from '@/utils/formatAddress'
 import UploadFile from '@/components/UploadFile/UploadFile'
-import { Client } from '@web3-storage/w3up-client'
-import FilesList from '@/components/FilesList/FilesList'
 import Header from '@/components/Header/Header'
 import Main from '@/components/Main/Main'
 
@@ -31,7 +29,6 @@ import ModularArithmeticWorker from './modularArithmetic.worker';
 
 export default function Home() {
     const [boxes, setBoxes] = useState<Memento.BoxStructOutput[]>([])
-    const [storageClient, setStorageClient] = useState<Client>();
     const [page, setPage] = useState('view');
     // TODO: memos, state, etc...
     const { open } = useWeb3Modal();
@@ -125,6 +122,8 @@ export default function Home() {
             <Header page={page} setPage={setPage} />
 
             <main className="flex min-h-screen flex-col items-center gap-8">
+                <Main />
+
                 <button onClick={handleComputation}>Run Computation</button>
                 <p>Progress: {progress}%</p>
                 <p>{result}</p>
@@ -137,8 +136,7 @@ export default function Home() {
                     <Button onClick={() => open()}>Connect</Button>
                 )}
 
-                <UploadFile client={storageClient} setClient={setStorageClient} />
-                <FilesList client={storageClient} setClient={setStorageClient} />
+                <UploadFile />
 
                 <Button classes='py-12 bg-secondary' onClick={createMemento}>
                     Create Memento

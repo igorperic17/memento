@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Main() {
     return (
-        <div className='flex flex-col items-center max-w-[1040px] text-center mt-[36px]'>
+        <div className='flex flex-col font-light items-center max-w-[1050px] text-center mt-[36px]'>
             <Image alt='memento-logo' src='logo.svg' width={185} height={236} />
 
             <h2 className='mt-[67px] text-2xl'>Welcome to Memento, where you can send messages in your own special way.</h2>

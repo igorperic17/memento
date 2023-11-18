@@ -1,26 +1,24 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
-import { Client, create } from "@web3-storage/w3up-client";
+import { NFTStorage, File } from 'nft.storage';
 
 
-export default function UploadFile({ client, setClient }: { client?: Client, setClient: (client: Client) => void }) {
+export default function UploadFile() {
     const [file, setFile] = useState<File>();
 
     const onUpload = () => {
         const upload = async () => {
-            if (file) {
-                if (!client) {
-                    const newClient = await create();
-                    await newClient.login(process.env.STORAGE_EMAIL as any);
-                    await newClient.setCurrentSpace('did:key:z6MkexHcXaQobLk11uTbZfv978nStn6Q3hZEYRdrhenCcoRN');
+            const name = '';
+            const description = '';
 
-                    setClient(newClient);
-                    const cid = await newClient.uploadFile(file);
-                    return cid;
-                } else {
-                    const cid = await client.uploadFile(file);
-                    return cid;
-                }
+            if (file) {
+                const storage = new NFTStorage({ token: process.env.NEXT_PUBLIC_STORAGE_KEY! });
+
+                return storage.store({
+                    image: file,
+                    name,
+                    description,
+                }).then(c => console.log(c));
             }
         }
         upload();
