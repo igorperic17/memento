@@ -38,6 +38,9 @@ Memento opens up a plethora of possibilities:
 
 Memento relies on a network of Solvers who work on computing the time-lock puzzles. Solvers are incentivized through bounties proportional to the time spent solving these puzzles.
 
+### Viewing a Memento
+![Memento Interface](images/13.png)
+![Memento Interface](images/14.png)
 ![Memento Solver](images/10.png)
 ![Memento Solver](images/11.png)
 ![Memento Solver](images/12.png)
