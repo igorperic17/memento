@@ -36,6 +36,8 @@ export default function MementoBox() {
           return contract.getMemento(id).then((t: any) => ({ ...t, id }))
         })
       )
+
+      mementoes.sort((a, b) => a.expirationDate.toNumber() - b.expirationDate.toNumber())
       setBoxes(mementoes)
     }
 
@@ -49,15 +51,15 @@ export default function MementoBox() {
         {boxes.length ? (
           <table className="w-full">
             <tbody>
-            <tr className="text-watermark text-2xl font-medium mb-2">
-              <td>Title</td>
-              <td>Date to Unseal</td>
-              <td>Action</td>
-            </tr>
+              <tr className="text-watermark text-2xl font-medium mb-2">
+                <td>Title</td>
+                <td>Date to Unseal</td>
+                <td>Action</td>
+              </tr>
               {boxes.map((box, i) => (
                 <tr key={box.id}>
-                  <td className="py-1">Memento {i}</td>
-                  <td>{moment(new Date(parseInt(box.expirationDate.toString()))).fromNow()}</td>
+                  <td className="py-1">Memento {i + 1}</td>
+                  <td>{moment(parseInt(box.expirationDate.toNumber())).fromNow()}</td>
                   <td>
                     <Link href={`/${box.id}`}>Open</Link>
                   </td>
