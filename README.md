@@ -8,6 +8,8 @@ Welcome to Memento, a decentralized time-capsule platform built for the Ethereum
 
 Memento leverages Ethereum's smart contracts to allow users to securely store messages and data, making them accessible only when certain conditions are met. This could be a predefined time period, a lack of proof of life, and other customizable triggers.
 
+Video demo: https://youtu.be/ZcFMCZaePcc
+
 ## Use Cases
 
 Memento opens up a plethora of possibilities:
