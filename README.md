@@ -1,6 +1,6 @@
 # Memento
 
-![Memento Logo](images/0.jpg)
+![Memento Logo](images/0.png)
 
 ## Introduction
 
@@ -34,6 +34,10 @@ Memento opens up a plethora of possibilities:
 ### Solvers
 
 Memento relies on a network of Solvers who work on computing the time-lock puzzles. Solvers are incentivized through bounties proportional to the time spent solving these puzzles.
+
+![Memento Solver](images/10.png)
+![Memento Solver](images/11.png)
+![Memento Solver](images/12.png)
 
 ## Screenshots
 
