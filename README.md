@@ -74,6 +74,9 @@ Memento relies on a network of Solvers who work on computing the time-lock puzzl
 
 0xa82ff9afd8f496c3d6ac40e2a0f282e47488cfc9
 
+## Linea contract address
+
+0x922D6956C99E12DFeB3224DEA977D0939758A1Fe
 
 ## WalletConnect
 
