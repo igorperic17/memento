@@ -1,12 +1,14 @@
 # Memento
 
-![Memento Logo](images/0.jpg)
+![Memento Logo](images/0.png)
 
 ## Introduction
 
 Welcome to Memento, a decentralized time-capsule platform built for the Ethereum ecosystem. As an entry to the ETH Global 2023 Istanbul Hackathon, Memento represents a novel approach to private, delayed sharing of notes and media on the blockchain.
 
 Memento leverages Ethereum's smart contracts to allow users to securely store messages and data, making them accessible only when certain conditions are met. This could be a predefined time period, a lack of proof of life, and other customizable triggers.
+
+Video demo: https://youtu.be/ZcFMCZaePcc
 
 ## Use Cases
 
@@ -35,6 +37,10 @@ Memento opens up a plethora of possibilities:
 
 Memento relies on a network of Solvers who work on computing the time-lock puzzles. Solvers are incentivized through bounties proportional to the time spent solving these puzzles.
 
+![Memento Solver](images/10.png)
+![Memento Solver](images/11.png)
+![Memento Solver](images/12.png)
+
 ## Screenshots
 
 ### Memento Interface
@@ -56,6 +62,28 @@ Memento relies on a network of Solvers who work on computing the time-lock puzzl
 - **Frontend**: Deployed on BOS.
 - **Time-Lock Protocol**: Fully implemented, excluding Solver rewards.
 - **Ethereum Improvement Proposal (EIP)**: Submitted for community consideration.
+
+# Deployments / Bounties
+
+## Chiliz contract address
+
+0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9
+
+
+## Scroll contract address
+
+0xa82ff9afd8f496c3d6ac40e2a0f282e47488cfc9
+
+
+## WalletConnect
+
+Used Web3Modal.
+
+
+## Filecoin
+
+Used web3storage/nftstorage.
+
 
 ## Acknowledgements
 
