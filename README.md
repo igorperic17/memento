@@ -1,5 +1,7 @@
 # Memento
 
+![Memento Logo](images/0.jpg)
+
 ## Introduction
 
 Welcome to Memento, a decentralized time-capsule platform built for the Ethereum ecosystem. As an entry to the ETH Global 2023 Istanbul Hackathon, Memento represents a novel approach to private, delayed sharing of notes and media on the blockchain.
@@ -32,6 +34,21 @@ Memento opens up a plethora of possibilities:
 ### Solvers
 
 Memento relies on a network of Solvers who work on computing the time-lock puzzles. Solvers are incentivized through bounties proportional to the time spent solving these puzzles.
+
+## Screenshots
+
+### Memento Interface
+![Memento Interface](images/1.png)
+
+### Creating a Memento
+![Memento Interface](images/2.png)
+![Memento Interface](images/6.png)
+![Memento Interface](images/3.png)
+![Memento Interface](images/5.png)
+
+### Viewing a Memento
+![Memento Interface](images/8.png)
+![Memento Interface](images/9.png)
 
 ## Roadmap
 
