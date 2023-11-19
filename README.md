@@ -8,7 +8,8 @@ Welcome to Memento, a decentralized time-capsule platform built for the Ethereum
 
 Memento leverages Ethereum's smart contracts to allow users to securely store messages and data, making them accessible only when certain conditions are met. This could be a predefined time period, a lack of proof of life, and other customizable triggers.
 
-Video demo: https://youtu.be/ZcFMCZaePcc
+Video demo: https://youtu.be/-xy1tzu4h3w
+
 
 ## Use Cases
 
@@ -37,6 +38,9 @@ Memento opens up a plethora of possibilities:
 
 Memento relies on a network of Solvers who work on computing the time-lock puzzles. Solvers are incentivized through bounties proportional to the time spent solving these puzzles.
 
+### Viewing a Memento
+![Memento Interface](images/13.png)
+![Memento Interface](images/14.png)
 ![Memento Solver](images/10.png)
 ![Memento Solver](images/11.png)
 ![Memento Solver](images/12.png)
@@ -74,6 +78,9 @@ Memento relies on a network of Solvers who work on computing the time-lock puzzl
 
 0xa82ff9afd8f496c3d6ac40e2a0f282e47488cfc9
 
+## Linea contract address
+
+0x922D6956C99E12DFeB3224DEA977D0939758A1Fe
 
 ## WalletConnect
 
