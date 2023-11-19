@@ -63,6 +63,14 @@ Memento relies on a network of Solvers who work on computing the time-lock puzzl
 - **Time-Lock Protocol**: Fully implemented, excluding Solver rewards.
 - **Ethereum Improvement Proposal (EIP)**: Submitted for community consideration.
 
+## Deployments / Bounties
+
+# Chiliz contract address: 0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9
+# Scroll contract address: 0xa82ff9afd8f496c3d6ac40e2a0f282e47488cfc9
+# WalletConnect - used Web3Modal
+# Filecoin - used web3storage/nftstorage
+
+
 ## Acknowledgements
 
 Thank you for your interest in Memento! We hope our project inspires more privacy-preserving applications on the Ethereum blockchain.
