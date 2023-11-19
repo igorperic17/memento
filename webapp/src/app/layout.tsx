@@ -7,7 +7,7 @@ const jost = Jost({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Memento',
-  description: '',
+  description: 'Memento is a dapp for storing private content on a public blockchain to be unlocked in the future. Powered by a novel EVM time-locking privacy protocol built from scratch in ETHGlobal Istanbul.'
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
