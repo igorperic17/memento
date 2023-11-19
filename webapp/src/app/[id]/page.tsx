@@ -10,6 +10,7 @@ import { useParams } from 'next/navigation'
 import moment from 'moment'
 import { RawMemento, pullMemento } from '@/services/memento'
 import { Spinner } from '@/components/Spinner/Spiner'
+import { unlockSecret } from '@/services/vdf'
 
 interface Item {
   expirationDate: Date
@@ -88,26 +89,31 @@ export default function MementoView() {
     if (isConnected) loadMemento()
   }, [isConnected])
 
+  useEffect(() => {
+    unlockSecret('123')
+  }, [])
+
   return (
-    <div className="w-full px-[20px] h-[100vh] mx-auto flex flex-col items-center justify-center">
+    <div className="w-full px-[20px] h-[100vh] mx-auto flex flex-col items-center justify-center py-5">
       <Image alt="memento-logo" src="logo.svg" width={185} height={236} />
 
       <h2 className="text-3xl text-center font-light mt-[12px]">
         {step === 0 && 'Here is Your Memento.'}
         {step === 1 && 'Enter the password to unseal the Memento.'}
         {step === 2 && 'Unsealing the Memento...'}
+        {step === 3 && 'Your Memento'}
       </h2>
       {(step === 0 || step === 1) && (
         <div className="w-full border border-border rounded-[20px] mt-[44px] py-[31px] px-[42px] mb-[36px]">
           <table className="w-full">
             <tbody>
-            <tr className="text-watermark text-2xl font-medium h-[60px]">
-              <td>Title</td>
-              <td>Date Sent</td>
-              <td>Date to Unseal</td>
-              <td>Total Duration</td>
-              <td>Countdown</td>
-            </tr>
+              <tr className="text-watermark text-2xl font-medium h-[60px]">
+                <td>Title</td>
+                <td>Date Sent</td>
+                <td>Date to Unseal</td>
+                <td>Total Duration</td>
+                <td>Countdown</td>
+              </tr>
               <tr className="h-[60px]">
                 <td>-</td>
                 <td>-</td>
@@ -147,7 +153,7 @@ export default function MementoView() {
 
       {/* Memento View */}
       {step === 3 && (
-        <div className="flex-1 w-full max-w-7xl">
+        <div className="flex-1 w-full max-w-7xl mt-4">
           <div>
             <span className="text-fg-disabled">From</span>
             <span className="ml-3">{item?.sender}</span>

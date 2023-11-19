@@ -1,6 +1,6 @@
 import { NFTStorage, File } from 'nft.storage'
 import { decryptString, deriveCryptoKey, encryptString } from './crypto'
-import {} from './vdf'
+import { unlockSecret } from './vdf'
 
 export interface Memento {
   title: string

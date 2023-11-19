@@ -62,7 +62,9 @@ fn forward_computation(x: &BigUint, e: &BigUint, m: &BigUint, steps: u32) -> Big
 
 fn backward_computation(y: &BigUint, d: &BigUint, m: &BigUint, steps: u32) -> BigUint {
     let mut result = y.clone();
-    for _ in 0..steps {
+    for i in 0..steps {
+        let percent = ((i as f32 / steps as f32) * 100f32) as i32;
+        println!("Executing step [{i}] {percent}%");
         result = mod_pow(&result, d, m);
     }
     result
@@ -117,6 +119,8 @@ async fn backward(request: web::Json<ComputationRequest>) -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    print_header();
+
     HttpServer::new(|| {
         App::new()
             .wrap(Cors::permissive())
@@ -126,6 +130,15 @@ async fn main() -> std::io::Result<()> {
     .bind("127.0.0.1:8080")?
     .run()
     .await
+}
+
+fn print_header() {
+    print!("\n");
+    println!("    /\\/\\   ___ _ __ ___   ___ _ __ | |_ ___  ");
+    println!("   /    \\ / _ \\ '_ ` _ \\ / _ \\ '_ \\| __/ _ \\ ");
+    println!("  / /\\/\\ \\  __/ | | | | |  __/ | | | || (_) |");
+    println!("  \\/    \\/\\___|_| |_| |_|\\___|_| |_|\\__\\___/ ");
+    println!("\n\n Ready!!\n");
 }
 
 // example usage (from terminal):
